@@ -23,6 +23,8 @@ class Problem {
         public tag?: Array<string>,
         public totalAccepted?: number,
         public totalSubmission?: number,
+        public questionFrontendId?: string,
+        public translatedTitle?: string,
 
         public sampleTestCase?: string,
         public content?: string,
@@ -44,6 +46,8 @@ class Problem {
                         stats
                         status
                         content
+                        questionFrontendId
+                        translatedTitle
                         topicTags {
                             name
                         }
@@ -68,6 +72,8 @@ class Problem {
         this.locked = question.isPaidOnly;
         this.likes = question.likes;
         this.dislikes = question.dislikes;
+        this.questionFrontendId = question.questionFrontendId;
+        this.translatedTitle = question.translatedTitle;
         this.status = Helper.statusMap(question.status);
         this.tag = question.topicTags.map(function (t: any) {
             return t.name;

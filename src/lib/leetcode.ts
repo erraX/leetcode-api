@@ -25,9 +25,13 @@ class Leetcode {
         };
     }
 
-    static async build(username: string, password: string, endpoint: EndPoint): Promise<Leetcode> {
+    static build(endpoint: EndPoint): Leetcode {
         Helper.switchEndPoint(endpoint);
-        const credit: Credit = await this.login(username, password);
+        // const credit: Credit = await this.login(username, password);
+        const credit = {
+            session: process.env.LEETCODE_SESSION || '',
+            csrfToken: process.env.LEETCODE_CSRF || ''
+        };
         Helper.setCredit(credit);
         return new Leetcode(credit);
     }
